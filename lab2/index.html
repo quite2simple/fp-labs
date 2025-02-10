@@ -7,7 +7,19 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app"></div>
+    <template id="todo">
+      <div class="todo">
+        <input class="todo-completed" type="checkbox">
+        <input class="todo-text" type="text" placeholder="New task">
+        <button class="todo-delete">Delete</button>
+      </div>
+    </template>
+    <div id="app">
+      <button id="add-todo">Add</button>
+      <div id="todo-list">
+
+      </div>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

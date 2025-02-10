@@ -1,8 +1,6 @@
-export const createTodo = () => {
-    const template = document.getElementById('todo');
+export const createTodo = (template) => {
     const clone = template.content.cloneNode(true);
-
-    return clone;
+    return clone.firstElementChild;
 }
 
 export const setupTodo = (todo, onChange, data) => {
