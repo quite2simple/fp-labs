@@ -6,12 +6,21 @@ const todoTemplate = document.querySelector('#todo');
 const todoList = document.querySelector('#todo-list');
 const addTodoButton = document.querySelector('#add-todo');
 
+const savedTodos = loadTodos(localStorage) || [];
 const todoDataList = [];
 
-addTodoButton.addEventListener('click', () => {
-  const todo = createTodo(todoTemplate);
-  const todoData = setupTodo(todo, () => 'not implemented', {});
-  todoDataList.push(todoData);
+const saveToLocalStorage = (todos) => localStorage.setItem('todos', serializeTodos(todos));
 
+const newTodo = (data={}) => {
+  const todo = createTodo(todoTemplate);
+  const todoData = setupTodo(todo, () => saveToLocalStorage(todoDataList), data);
+  todoDataList.push(todoData);
   todoList.append(todo);
-});
+  saveToLocalStorage(todoDataList);
+}
+
+for (const todoData of savedTodos) {
+  newTodo(todoData);
+}
+
+addTodoButton.addEventListener('click', newTodo);

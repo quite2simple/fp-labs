@@ -9,16 +9,22 @@ export const setupTodo = (todo, onChange, data) => {
     const todoDelete = todo.querySelector('.todo-delete');
 
     const todoData = {
-        completed: data.completed,
-        text: data.checked,
+        completed: data.completed || false,
+        text: data.text || '',
         deleted: false
     };
+
+    todoCompleted.checked = todoData.completed;
+    todoText.value = todoData.text;
 
     todoCompleted.addEventListener('change', () => {
         todoData.completed = todoCompleted.checked;
         onChange();
     });
-    todoText.addEventListener('input', () => todoData.text = todoText.value);
+    todoText.addEventListener('input', () => {
+        todoData.text = todoText.value,
+        onChange();
+    });
     todoDelete.addEventListener('click', () => {
         todoData.deleted = true;
         onChange();
