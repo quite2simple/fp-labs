@@ -7,6 +7,9 @@ const todoList = document.querySelector('#todo-list');
 const addTodoButton = document.querySelector('#add-todo');
 const totalCounter = document.querySelector('#total-counter');
 const completedCounter = document.querySelector('#completed-counter');
+const todoCompletedFilter = document.querySelector('#todo-filter-completed');
+const todoNotCompletedFilter = document.querySelector('#todo-filter-notcompleted');
+const todoEmptyFilter = document.querySelector('#todo-filter-empty');
 
 const savedTodos = loadTodos(localStorage) || [];
 const todoDataList = [];
