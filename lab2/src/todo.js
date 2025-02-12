@@ -1,3 +1,5 @@
+import { emojiHTML, textToRandomEmojiCode, defaultDictionary, defaultIfEmpty } from "./emoji";
+
 export const createTodo = (template) => {
     const clone = template.content.cloneNode(true);
     return clone.firstElementChild;
@@ -7,24 +9,29 @@ export const setupTodo = (todo, onChange, data) => {
     const todoCompleted = todo.querySelector('.todo-completed');
     const todoText = todo.querySelector('.todo-text');
     const todoDelete = todo.querySelector('.todo-delete');
+    const todoEmoji = todo.querySelector('.todo-emoji');
 
     const todoData = {
         id: data.id || -1,
         completed: data.completed || false,
         text: data.text || '',
-        deleted: false
+        deleted: false,
+        emojiCode: data.emojiCode || defaultIfEmpty,
     };
 
     todo.setAttribute('id', `todo-${todoData.id}`);
     todoCompleted.checked = todoData.completed;
     todoText.value = todoData.text;
+    todoEmoji.innerHTML = emojiHTML(todoData.emojiCode);
 
     todoCompleted.addEventListener('change', () => {
         todoData.completed = todoCompleted.checked;
         onChange();
     });
     todoText.addEventListener('input', () => {
-        todoData.text = todoText.value,
+        todoData.text = todoText.value;
+        todoData.emojiCode = textToRandomEmojiCode(todoData.text, defaultDictionary, defaultIfEmpty);
+        todoEmoji.innerHTML = emojiHTML(todoData.emojiCode);
         onChange();
     });
     todoDelete.addEventListener('click', () => {
