@@ -9,11 +9,13 @@ export const setupTodo = (todo, onChange, data) => {
     const todoDelete = todo.querySelector('.todo-delete');
 
     const todoData = {
+        id: data.id || -1,
         completed: data.completed || false,
         text: data.text || '',
         deleted: false
     };
 
+    todo.setAttribute('id', `todo-${todoData.id}`);
     todoCompleted.checked = todoData.completed;
     todoText.value = todoData.text;
 
