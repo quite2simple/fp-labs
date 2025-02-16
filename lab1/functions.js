@@ -19,10 +19,10 @@ export const squaredArray = (arr) => {
 /**
  * Pure function
  * @param {any[]} arr 
- * @returns {any[]} a new array with only objects with a length property
+ * @returns {any[]} a new array with only objects with a 'credits' property
  */
-export const keepHasLengthOnly = (arr) => {
-    return arr.filter((obj) => Object.hasOwn(obj, 'length'));
+export const keepHasCreditsOnly = (arr) => {
+    return arr.filter((obj) => Object.hasOwn(obj, 'credits'));
 }
 
 /**
