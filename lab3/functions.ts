@@ -35,7 +35,7 @@ export interface CreditedUser extends HasCredits {
  * @returns {T[]} The sorted array.
  */
 export const sortByCredits = <T extends HasCredits>(arr: T[], asc: boolean): T[] => {
-    return arr.sort((a, b) => (asc ? a.credits - b.credits : b.credits - a.credits));
+    return arr.toSorted((a, b) => (asc ? a.credits - b.credits : b.credits - a.credits));
 }
 
 /**
